@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-           System.out.println("Hello, World!");
+        Cards carte = new Cards();
+        Commands.affichageCommandes();
+        Commands.traitement("KIKILOLO", carte);
     }
 }
