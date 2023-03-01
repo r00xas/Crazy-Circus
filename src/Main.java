@@ -4,8 +4,6 @@ public class Main {
         Cards carte = new Cards();
         System.out.println(g.toString());
         Commands.affichageCommandes();
-        Commands.traitement("KIKILOLO", carte);
-
-
+        Commands.traitement("SONI", carte);
     }
 }

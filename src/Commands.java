@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Commands {
 
@@ -29,38 +30,48 @@ public class Commands {
     }
 
     public static void doKi(Cards carte) {
-        carte.Blue.offer(carte.Red.poll());
+
+        carte.Red.addFirst(carte.Blue.removeFirst());
         System.out.println("KI");
+
     }
     public static void doLo(Cards carte) {
-        carte.Red.offer(carte.Blue.poll());
+
+        carte.Blue.addFirst(carte.Red.removeFirst());
         System.out.println("LO");
+
     }
     public static void doSo(Cards carte) {
-        carte.Manoeuvre.offer(carte.Blue.poll());
-        carte.Red.offer(carte.Manoeuvre.poll());
+
+        carte.Manoeuvre.addFirst(carte.Blue.removeFirst());
+        carte.Manoeuvre.addFirst(carte.Red.removeFirst());
+        carte.Blue.addFirst(carte.Manoeuvre.removeFirst());
+        carte.Red.addFirst(carte.Manoeuvre.removeFirst());
         System.out.println("SO");
     }
     public static void doNi(Cards carte) {
+
         while (carte.Blue.peek() != null) {
-            carte.Manoeuvre.offer(carte.Blue.poll());
+            carte.Manoeuvre.addFirst(carte.Blue.removeFirst());
         }
-        while (carte.Manoeuvre.peek() != null) {
-            carte.Blue.offer(carte.Manoeuvre.poll());
-        }
+        carte.Blue = carte.Manoeuvre;
+        carte.Manoeuvre = new LinkedList<>();
         System.out.println("NI");
+
     }
     public static void doMa(Cards carte) {
+
         while (carte.Red.peek() != null) {
-            carte.Manoeuvre.offer(carte.Red.poll());
+            carte.Manoeuvre.addFirst(carte.Red.removeFirst());
         }
-        while (carte.Manoeuvre.peek() != null) {
-            carte.Red.offer(carte.Manoeuvre.poll());
-        }
+        carte.Red = carte.Manoeuvre;
+        carte.Manoeuvre = new LinkedList<>();
         System.out.println("MA");
+
     }
 
     public static void affichageCommandes() {
+        System.out.println("--------------------------------------------");
         System.out.println("KI : BLEU --> ROUGE     NI : BLEU ^\nLO : BLEU <-- ROUGE     MA : ROUGE ^\nSO : BLEU <-> ROUGE\n");
     }
 }
