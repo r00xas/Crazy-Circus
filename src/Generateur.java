@@ -22,12 +22,23 @@ public class Generateur {
         BlueDepart.offer(this.lion);
         BlueDepart.offer(this.ours);
         RedDepart.offer(this.elephant);
+        BlueArrivee.offer(this.lion);
+        //BlueArrivee.offer(this.elephant);
+        RedArrivee.offer(this.ours);
+
     }
 
     public String toString(){
-        String s = "";
-        s+=BlueDepart.toString();
-        return s;
+        String r ="";
+        String b = "";
+        b+=BlueDepart.toString() + "\t"+RedDepart.toString()+"\t\t"+BlueArrivee.toString();
+        b = b.replace("[","");
+        b = b.replace("]","");
+        b = b.replace(",","\n");
+        b = b.replace(" ","");
+        b += "\n----" + "\t ----" +"\t ==>"+ "\t ----"+ "\t ----";
+        b += "\nBLEU" + "\t ROUGE";
+        return b;
     }
 
 }
