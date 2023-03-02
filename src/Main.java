@@ -5,5 +5,7 @@ public class Main {
         System.out.println(g.toString());
         Commands.affichageCommandes();
         Commands.traitement("SONI", carte);
+        System.out.println(g.BlueDepart + " " + g.RedDepart);
+        System.out.println(g.BlueArrivee + " " + g.RedArrivee);
     }
 }

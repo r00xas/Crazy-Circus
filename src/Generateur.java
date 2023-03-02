@@ -34,6 +34,30 @@ public class Generateur {
                 }
             }
         }
+        Deque<String> tempBleu = new LinkedList<>();
+        Deque<String> tempRouge = new LinkedList<>();
+        while (Bleu.size()!=0){
+            tempBleu.addFirst(Bleu.removeFirst());
+        }
+        while (Rouge.size()!=0){
+            tempRouge.addFirst(Rouge.removeFirst());
+        }
+        while (tempBleu.size()!=0){
+            if (tempBleu.peek() != "") {
+                Bleu.addFirst(tempBleu.removeFirst());
+            }
+            else {
+                temp = tempBleu.removeFirst();
+            }
+        }
+        while (tempRouge.size()!=0){
+            if (tempRouge.peek() != "") {
+                Rouge.addFirst(tempRouge.removeFirst());
+            }
+            else {
+                temp = tempRouge.removeFirst();
+            }
+        }
     }
     public Generateur() {
         this.BlueDepart = new LinkedList<>();
