@@ -34,6 +34,10 @@ public class Commands {
         return statement;
     }
 
+    public static boolean isRight(Cards carte, Generateur g) {
+        return carte.Blue.equals(g.BlueArrivee) && carte.Red.equals(g.RedArrivee);
+    }
+
     public static boolean doKi(Cards carte) {
         if (carte.Blue.peek() == null) {
             return false;

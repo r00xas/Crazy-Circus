@@ -20,20 +20,24 @@ public class Generateur {
         s.add(this.lion);
         s.add("");
         String temp = "";
-        while (s.size()!=0) {
-            Bleu.addFirst(s.get(rand.nextInt(s.size())));
-            for (int i = 0; i < s.size(); ++i) {
-                if (Bleu.getFirst() == s.get(i)) {
-                    s.remove(i);
+        while (s.size() != 0) {
+            if (rand.nextInt(0, 3) == 1) {
+                Bleu.addFirst(s.get(rand.nextInt(s.size())));
+                for (int i = 0; i < s.size(); ++i) {
+                    if (Bleu.getFirst() == s.get(i)) {
+                        s.remove(i);
+                    }
                 }
-            }
-            Rouge.addFirst(s.get(rand.nextInt(s.size())));
-            for (int i = 0; i < s.size(); ++i) {
-                if (Rouge.getFirst() == s.get(i)) {
-                    s.remove(i);
+            } else {
+                Rouge.addFirst(s.get(rand.nextInt(s.size())));
+                for (int i = 0; i < s.size(); ++i) {
+                    if (Rouge.getFirst() == s.get(i)) {
+                        s.remove(i);
+                    }
                 }
             }
         }
+
         Deque<String> tempBleu = new LinkedList<>();
         Deque<String> tempRouge = new LinkedList<>();
         while (Bleu.size()!=0){
@@ -65,14 +69,11 @@ public class Generateur {
         this.RedArrivee = new LinkedList<>();
         this.BlueArrivee = new LinkedList<>();
 
-        Aleatoire(this.BlueDepart,this.RedDepart);
-        Aleatoire(this.BlueArrivee,RedArrivee);
-        /*BlueDepart.addFirst(this.lion);
-        BlueDepart.addFirst(this.ours);
-        RedDepart.addFirst(this.elephant);
-        BlueArrivee.addFirst(this.elephant);
-        BlueArrivee.addFirst(this.lion);
-        BlueArrivee.addFirst(this.ours);*/
+        do {
+            Aleatoire(this.BlueDepart, this.RedDepart);
+            Aleatoire(this.BlueArrivee, RedArrivee);
+        } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
+
     }
 
     public String toString(){
