@@ -57,11 +57,11 @@ public class Game {
             Commands.affichageCommandes();
             String commande = "";
             while (!verif) {
-                commande = sc.next();
+                commande = sc.nextLine();
                 verif = partie.setJoueurActuel(commande.split(" ")[0]);
             }
 
-            Commands.traitement(sc.next(), carte);
+            Commands.traitement(commande.split(" ")[1], carte);
             if (Commands.isRight(carte, g)) {
                 System.out.println(partie.joueurs.get(partie.joueurActuel).nom + " remporte la manche !");
                 partie.joueurs.get(partie.joueurActuel).addScore(1);
