@@ -76,6 +76,17 @@ public class Generateur {
 
     }
 
+    public Generateur(Generateur gen) {
+        this.BlueDepart = gen.BlueArrivee;
+        this.RedDepart = gen.RedArrivee;
+        this.RedArrivee = new LinkedList<>();
+        this.BlueArrivee = new LinkedList<>();
+
+        do {
+            Aleatoire(this.BlueArrivee, this.RedArrivee);
+        } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
+    }
+
     public String toString(){
 
         Object[] BlueDepartListe = BlueDepart.toArray();

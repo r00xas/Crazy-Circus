@@ -14,16 +14,6 @@ public class Cards {
         this.Red = gen.RedDepart;
     }
 
-    public Cards() {
-        this.Manoeuvre = new LinkedList<>();
-        this.Blue = new LinkedList<>();
-        this.Red = new LinkedList<>();
-
-        this.Blue.addFirst("LION");
-        this.Blue.addFirst("OURS");
-        this.Red.addFirst("ELEPHANT");
-    }
-
     @Override
     public String toString() {
         return "Cards{" +
