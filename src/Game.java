@@ -49,13 +49,24 @@ public class Game {
         partie.addJoueurs(args);
         Scanner sc = new Scanner(System.in);
         Generateur g = new Generateur();
+        Cards carteDepart = new Cards(g);
+        Tas tas = new Tas();
         while (!partie.isOver) {
             Cards carte = new Cards(g);
+            if (tas.isIn(carte)){
+                do {
+                    g = new Generateur();
+                    carte = new Cards(g);
+                    tas.add(carte);
+                } while (!tas.isIn(carte));
+            }
+            else tas.add(carte);
             Boolean verif = false;
-            System.out.println(g.BlueDepart + " " + g.RedDepart);
-            System.out.println(g.BlueArrivee + " " + g.RedArrivee);
+            System.out.println("Bleu : "+g.BlueDepart + " | Rouge : " + g.RedDepart);
+            System.out.println("Bleu : "+g.BlueArrivee + " | Rouge : " + g.RedArrivee);
             Commands.affichageCommandes();
             String commande = "";
+
             while (!verif) {
                 commande = sc.nextLine();
                 verif = partie.setJoueurActuel(commande.split(" ")[0]);

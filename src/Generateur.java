@@ -6,8 +6,6 @@ public class Generateur {
     public Deque<String> BlueArrivee;
     public Deque<String> RedArrivee;
 
-
-
     public String elephant = "ELEPHANT";
     public String lion = "LION";
     public String ours = "OURS";
@@ -73,7 +71,6 @@ public class Generateur {
             Aleatoire(this.BlueDepart, this.RedDepart);
             Aleatoire(this.BlueArrivee, RedArrivee);
         } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
-
     }
 
     public Generateur(Generateur gen) {
