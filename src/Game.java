@@ -95,6 +95,14 @@ public class Game {
         Boolean isOver = false;
 
         while (!isOver) {
+            else tas.add(carte);
+            Boolean verif = false;
+            System.out.println("Bleu : "+g.BlueDepart + " | Rouge : " + g.RedDepart);
+            System.out.println("Bleu : "+g.BlueArrivee + " | Rouge : " + g.RedArrivee);
+            System.out.println("-----------------------------------------------------");
+            System.out.println(g.toString());
+            Commands.affichageCommandes();
+            String commande = "";
 
             while (!verif) {
                 commande = sc.nextLine();
