@@ -13,6 +13,8 @@ public class Joueur {
         this.score += score;
     }
 
+
+
     public void setErreur(boolean erreur) {
         this.aErreur = erreur;
     }

@@ -70,7 +70,7 @@ public class Generateur {
         do {
             Aleatoire(this.BlueDepart, this.RedDepart);
             Aleatoire(this.BlueArrivee, RedArrivee);
-        } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
+        } while (this.BlueDepart.equals(this.BlueArrivee) && this.RedDepart.equals(this.RedArrivee));
     }
 
     public Generateur(Generateur gen) {
@@ -81,7 +81,7 @@ public class Generateur {
 
         do {
             Aleatoire(this.BlueArrivee, this.RedArrivee);
-        } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
+        } while ((this.BlueDepart.equals(this.BlueArrivee)) && (this.RedDepart.equals(this.RedArrivee)));
     }
 
     public String toString(){

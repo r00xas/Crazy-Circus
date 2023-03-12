@@ -18,11 +18,28 @@ public class Game {
         this.joueurs.add(j);
     }
 
+    public Joueur gagnant() {
+        int valeur = 0;
+        for (Joueur j : joueurs) {
+            if (j.score > valeur) {
+                valeur = j.score;
+            }
+        }
+        for (Joueur j : joueurs) {
+            if (j.score == valeur) {
+                return j;
+            }
+        }
+        return null;
+    }
     public void addJoueurs(String[] noms) {
         for (String nom : noms) {
             this.addJoueur(nom);
         }
     }
+
+
+
 
     public void setOver(boolean over) {
         isOver = over;
@@ -44,28 +61,40 @@ public class Game {
         return false;
     }
 
-    public static void main(String[] args) {
-        Game partie = new Game();
-        partie.addJoueurs(args);
-        Scanner sc = new Scanner(System.in);
-        Generateur g = new Generateur();
-        Cards carteDepart = new Cards(g);
-        Tas tas = new Tas();
-        while (!partie.isOver) {
-            Cards carte = new Cards(g);
-            if (tas.isIn(carte)){
-                do {
-                    g = new Generateur();
-                    carte = new Cards(g);
-                    tas.add(carte);
-                } while (!tas.isIn(carte));
+    public void resetJoueurs() {
+        for (Joueur j : this.joueurs) {
+            j.aErreur = false;
+        }
+    }
+
+    public int nbJoueursRestants () {
+        int nb = 0;
+        for (Joueur j : this.joueurs) {
+            if (!j.aErreur) {
+                nb++;
             }
-            else tas.add(carte);
-            Boolean verif = false;
-            System.out.println("Bleu : "+g.BlueDepart + " | Rouge : " + g.RedDepart);
-            System.out.println("Bleu : "+g.BlueArrivee + " | Rouge : " + g.RedArrivee);
-            Commands.affichageCommandes();
-            String commande = "";
+        }
+        return nb;
+    }
+
+    public Joueur getJoueurRestant () {
+        if (this.nbJoueursRestants() == 1) {
+            for (Joueur j : this.joueurs) {
+                if (!j.aErreur) {
+                    return j;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static void jouer (Game partie, Generateur g, Cards carte) {
+        Scanner sc = new Scanner(System.in);
+        String commande = "";
+        Boolean verif = false;
+        Boolean isOver = false;
+
+        while (!isOver) {
 
             while (!verif) {
                 commande = sc.nextLine();
@@ -76,10 +105,41 @@ public class Game {
             if (Commands.isRight(carte, g)) {
                 System.out.println(partie.joueurs.get(partie.joueurActuel).nom + " remporte la manche !");
                 partie.joueurs.get(partie.joueurActuel).addScore(1);
-                g = new Generateur(g);
+                isOver = true;
             } else {
-                System.out.println(partie.joueurs.get(partie.joueurActuel).nom + ", la sequence c'est pas bonne :/");
+                System.out.println(partie.joueurs.get(partie.joueurActuel).nom + ", la sequence c'est pas bonne");
+                partie.joueurs.get(partie.joueurActuel).aErreur = true;
+                if (partie.nbJoueursRestants() == 1) {
+                    isOver = true;
+                    System.out.println(partie.getJoueurRestant().nom + " a gagné la manche !");
+                    partie.getJoueurRestant().addScore(1);
+                }
             }
+        }
+    }
+    public static void main(String[] args) {
+        Game partie = new Game();
+        partie.addJoueurs(args);
+        Generateur g = new Generateur();
+        Generateur oldG = new Generateur();
+        Tas tas = new Tas();
+        Cards carte = new Cards(g);
+        while (!partie.isOver) {
+            if (tas.isIn(carte)) {
+                do {
+                    g = new Generateur(oldG);
+                    carte = new Cards(g);
+                    tas.add(carte);
+                } while (!tas.isIn(carte));
+            } else tas.add(carte);
+
+            System.out.println("Bleu : " + g.BlueDepart + " | Rouge : " + g.RedDepart);
+            System.out.println("Bleu : " + g.BlueArrivee + " | Rouge : " + g.RedArrivee);
+            Commands.affichageCommandes();
+            jouer(partie,g,carte);
+            partie.resetJoueurs();
+            oldG = g;
+            g = new Generateur(g);
         }
     }
 }

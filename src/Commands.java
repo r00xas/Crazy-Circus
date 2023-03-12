@@ -26,7 +26,6 @@ public class Commands {
                 case "NI" -> statement=doNi(carte);
                 case "MA" -> statement=doMa(carte);
                 default -> {
-                    System.out.println("Commande inconnue");
                     return false;
                 }
             }
