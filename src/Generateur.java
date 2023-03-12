@@ -84,7 +84,7 @@ public class Generateur {
         } while (this.BlueDepart == this.BlueArrivee && this.RedDepart == this.RedArrivee);
     }
 
-    public String toString(){
+    /*public String toString(){
 
         Object[] BlueDepartListe = BlueDepart.toArray();
         Object[] RedDepartListe = RedDepart.toArray();
@@ -103,10 +103,10 @@ public class Generateur {
         retourner += "\t";
         if (RedArriveeListe.length > 1) retourner += RedArriveeListe[0];
 
-        
+
         retourner += "\n";
 
-        
+
         if (BlueDepartListe.length > 1) retourner += BlueDepartListe[1];
         else if (BlueDepartListe.length == 1) retourner += BlueDepartListe[0];
         else retourner += "\t";
@@ -122,7 +122,7 @@ public class Generateur {
         if (BlueArriveeListe.length > 1) retourner += BlueArriveeListe[1];
         else if (BlueArriveeListe.length == 1) retourner += BlueArriveeListe[0];
         else retourner += "\t";
-        
+
         retourner += "\t";
         if (RedArriveeListe.length > 1) retourner += RedArriveeListe[1];
         else if (RedArriveeListe.length == 1) retourner += RedArriveeListe[0];
@@ -133,6 +133,125 @@ public class Generateur {
         retourner += "----"+"\t"+"----"+"\t\t"+"==>"+"\t"+"----"+"\t\t"+"----";
         retourner +="\n";
         retourner+= "BLEU"+"\t"+"ROUGE"+"\t\t\t"+"BLEU"+"\t\t"+"ROUGE";
+
+
+
+        return retourner;
+    }*/
+
+    public String toString(){
+
+        Object[] BlueDepartListe = BlueDepart.toArray();
+        Object[] RedDepartListe = RedDepart.toArray();
+        Object[] BlueArriveeListe = BlueArrivee.toArray();
+        Object[] RedArriveeListe = RedArrivee.toArray();
+        String retourner = "";
+
+
+        if (BlueDepartListe.length == 3 && BlueDepartListe[0] == "ELEPHANT") retourner += BlueDepartListe[0] + " ";
+        else if (BlueDepartListe.length == 3) retourner += BlueDepartListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t";
+
+        if (RedDepartListe.length == 3 && RedDepartListe[0] == "ELEPHANT") retourner += RedDepartListe[0] + " ";
+        else if (RedDepartListe.length == 3) retourner += RedDepartListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t\t\t\t";
+
+
+        if (BlueArriveeListe.length == 3 && BlueArriveeListe[0] == "ELEPHANT") retourner += BlueArriveeListe[0] + " ";
+        else if (BlueArriveeListe.length == 3) retourner += BlueArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t";
+
+        if (RedArriveeListe.length == 3 && RedArriveeListe[0] == "ELEPHANT") retourner += RedArriveeListe[0] + " ";
+        else if (RedArriveeListe.length == 3) retourner += RedArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+
+        // LIGNE SUIVANTE
+        retourner += "\n";
+
+
+        if (BlueDepartListe.length == 3 && BlueDepartListe[1] == "ELEPHANT") retourner += BlueDepartListe[1] + " ";
+        else if (BlueDepartListe.length == 3) retourner += BlueDepartListe[1] + "\t ";
+        else if (BlueDepartListe.length == 2 && BlueDepartListe[0] == "ELEPHANT") retourner += BlueDepartListe[0] + " ";
+        else if (BlueDepartListe.length == 2) retourner += BlueDepartListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t";
+
+        if (RedDepartListe.length == 3 && RedDepartListe[1] == "ELEPHANT") retourner += RedDepartListe[1] + " ";
+        else if (RedDepartListe.length == 3) retourner += RedDepartListe[1] + "\t ";
+        else if (RedDepartListe.length == 2 && RedDepartListe[0] == "ELEPHANT") retourner += RedDepartListe[0] + " ";
+        else if (RedDepartListe.length == 2) retourner += RedDepartListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t\t\t\t";
+
+        if (BlueArriveeListe.length == 3 && BlueArriveeListe[1] == "ELEPHANT") retourner += BlueArriveeListe[1] + " ";
+        else if (BlueArriveeListe.length == 3) retourner += BlueArriveeListe[1] + "\t ";
+        else if (BlueArriveeListe.length == 2 && BlueArriveeListe[0] == "ELEPHANT") retourner += BlueArriveeListe[0] + " ";
+        else if (BlueArriveeListe.length == 2) retourner += BlueArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t";
+
+        if (RedArriveeListe.length == 3 && RedArriveeListe[1] == "ELEPHANT") retourner += RedArriveeListe[1] + " ";
+        else if (RedArriveeListe.length == 3) retourner += RedArriveeListe[1] + "\t ";
+        else if (RedArriveeListe.length == 2 && RedArriveeListe[0] == "ELEPHANT") retourner += RedArriveeListe[0] + " ";
+        else if (RedArriveeListe.length == 2) retourner += RedArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+        
+        // LIGNE SUIVANTE
+        retourner += "\n";
+        
+        if (BlueDepartListe.length == 3 && BlueDepartListe[2] == "ELEPHANT") retourner += BlueDepartListe[2] + " ";
+        else if (BlueDepartListe.length == 3) retourner += BlueDepartListe[2] + "\t ";
+        else if (BlueDepartListe.length == 2 && BlueDepartListe[1] == "ELEPHANT") retourner += BlueDepartListe[1] + " ";
+        else if (BlueDepartListe.length == 2) retourner += BlueDepartListe[1] + "\t ";
+        else if (BlueDepartListe.length == 1 && BlueDepartListe[0] == "ELEPHANT") retourner += BlueDepartListe[0] + " ";
+        else if (BlueDepartListe.length == 1) retourner += BlueDepartListe[0] + "\t ";
+        else retourner += "\t ";
+        
+        retourner += "\t";
+
+        if (RedDepartListe.length == 3 && RedDepartListe[2] == "ELEPHANT") retourner += RedDepartListe[2] + " ";
+        else if (RedDepartListe.length == 3) retourner += RedDepartListe[2] + "\t ";
+        else if (RedDepartListe.length == 2 && RedDepartListe[1] == "ELEPHANT") retourner += RedDepartListe[1] + " ";
+        else if (RedDepartListe.length == 2) retourner += RedDepartListe[1] + "\t ";
+        else if (RedDepartListe.length == 1 && RedDepartListe[0] == "ELEPHANT") retourner += RedDepartListe[0] + " ";
+        else if (RedDepartListe.length == 1) retourner += RedDepartListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t\t\t\t";
+
+        if (BlueArriveeListe.length == 3 && BlueArriveeListe[2] == "ELEPHANT") retourner += BlueArriveeListe[2] + " ";
+        else if (BlueArriveeListe.length == 3) retourner += BlueArriveeListe[2] + "\t ";
+        else if (BlueArriveeListe.length == 2 && BlueArriveeListe[1] == "ELEPHANT") retourner += BlueArriveeListe[1] + " ";
+        else if (BlueArriveeListe.length == 2) retourner += BlueArriveeListe[1] + "\t ";
+        else if (BlueArriveeListe.length == 1 && BlueArriveeListe[0] == "ELEPHANT") retourner += BlueArriveeListe[0] + " ";
+        else if (BlueArriveeListe.length == 1) retourner += BlueArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+
+        retourner += "\t";
+
+        if (RedArriveeListe.length == 3 && RedArriveeListe[2] == "ELEPHANT") retourner += RedArriveeListe[2] + " ";
+        else if (RedArriveeListe.length == 3) retourner += RedArriveeListe[2] + "\t ";
+        else if (RedArriveeListe.length == 2 && RedArriveeListe[1] == "ELEPHANT") retourner += RedArriveeListe[1] + " ";
+        else if (RedArriveeListe.length == 2) retourner += RedArriveeListe[1] + "\t ";
+        else if (RedArriveeListe.length == 1 && RedArriveeListe[0] == "ELEPHANT") retourner += RedArriveeListe[0] + " ";
+        else if (RedArriveeListe.length == 1) retourner += RedArriveeListe[0] + "\t ";
+        else retourner += "\t ";
+        
+        
+
+        retourner +="\n";
+        retourner += "----"+"\t\t"+"----"+"\t\t"+"==>"+"\t\t"+"----"+"\t\t"+"----";
+        retourner +="\n";
+        retourner+= "BLEU"+"\t\t"+"ROUGE"+"\t\t\t"+"BLEU"+"\t\t"+"ROUGE";
 
 
 

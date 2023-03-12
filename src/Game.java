@@ -64,6 +64,8 @@ public class Game {
             Boolean verif = false;
             System.out.println("Bleu : "+g.BlueDepart + " | Rouge : " + g.RedDepart);
             System.out.println("Bleu : "+g.BlueArrivee + " | Rouge : " + g.RedArrivee);
+            System.out.println("-----------------------------------------------------");
+            System.out.println(g.toString());
             Commands.affichageCommandes();
             String commande = "";
 
