@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game {
     ArrayList<Joueur> joueurs;
 
-    boolean isOver = false;
+    boolean Over = false;
 
     int joueurActuel = 0;
 
@@ -42,7 +42,11 @@ public class Game {
 
 
     public void setOver(boolean over) {
-        isOver = over;
+        Over = over;
+    }
+
+    public boolean isOver(Tas t) {
+        return t.isFull();
     }
 
     public boolean setJoueurActuel(String nom) {
@@ -88,14 +92,21 @@ public class Game {
         return null;
     }
 
+    public Joueur getVainqueur(){
+        Joueur winner = new Joueur("empty");
+        for (Joueur j : this.joueurs) {
+            if (j.score>winner.score) {
+                winner = j;
+            }
+        }
+        return winner;
+    }
+
     public static void jouer (Game partie, Generateur g, Cards carte) {
         Scanner sc = new Scanner(System.in);
-        String commande = "";
-        Boolean verif = false;
         Boolean isOver = false;
 
         while (!isOver) {
-            else tas.add(carte);
             Boolean verif = false;
             System.out.println("Bleu : "+g.BlueDepart + " | Rouge : " + g.RedDepart);
             System.out.println("Bleu : "+g.BlueArrivee + " | Rouge : " + g.RedArrivee);
@@ -132,7 +143,7 @@ public class Game {
         Generateur oldG = new Generateur();
         Tas tas = new Tas();
         Cards carte = new Cards(g);
-        while (!partie.isOver) {
+        while (!partie.isOver(tas)) {
             if (tas.isIn(carte)) {
                 do {
                     g = new Generateur(oldG);
@@ -140,14 +151,12 @@ public class Game {
                     tas.add(carte);
                 } while (!tas.isIn(carte));
             } else tas.add(carte);
-
-            System.out.println("Bleu : " + g.BlueDepart + " | Rouge : " + g.RedDepart);
-            System.out.println("Bleu : " + g.BlueArrivee + " | Rouge : " + g.RedArrivee);
-            Commands.affichageCommandes();
             jouer(partie,g,carte);
             partie.resetJoueurs();
             oldG = g;
             g = new Generateur(g);
         }
+        System.out.println("Partie terminée !");
+        System.out.println("Le joueur "+partie.getVainqueur().nom+" à gagné avec "+partie.getVainqueur().score+" points.");
     }
 }
